@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Card from './Card';
 
 const Category = props => {
-    const [category, setCategory] = useState(props.section);
+    const { section, filterToSearch } = props;
+
+    const [category, setCategory] = useState(section);
     const [pictures, setPictures] = useState([]);
     const API_KEY = '13839725-20680b3928bf4565b9746bf22';
 
@@ -15,12 +17,12 @@ const Category = props => {
     }
 
     useEffect(() => {
-        if (props.filterToSearch !== '') {
-            setCategory(props.filterToSearch);
-            getDataByCategory(props.filterToSearch);
+        if (filterToSearch !== '') {
+            setCategory(filterToSearch);
+            getDataByCategory(filterToSearch);
         } else
-            getDataByCategory(props.section);
-    });
+            getDataByCategory(section);
+    }, [filterToSearch, section]);
 
     return (
         <div className="mt-2 mb-5">
@@ -38,6 +40,7 @@ const Category = props => {
                                 comments={picture.comments}
                                 favorites={picture.favorites}
                                 downloads={picture.downloads}
+                                userId={picture.user_id}
                                 username={picture.user}
                                 pictureUser={picture.userImageURL}
                             />

@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Interaction from './Interaction';
 
 const Card = props => {
-    const { url, picture, title, likes, comments, favorites, downloads, username, pictureUser } = props;
+    const { url, picture, title, likes, favorites, downloads, userId, username, pictureUser } = props;
 
     return (
         <div className="flex-none w-auto md:w-64 rounded shadow pb-2 md:mr-2 mt-2">
@@ -16,8 +17,8 @@ const Card = props => {
                 <div className="flex justify-center w-full text-sm mb-3 mt-2">
                     {/* Likes */}
                     <Interaction icon="far fa-thumbs-up" value={likes} color="text-blue-700" title="Likes" />
-                    {/* Comments */}
-                    <Interaction icon="far fa-comment" value={comments} color="text-blue-400" title="Comments" />
+                    {/* Comments 
+                    <Interaction icon="far fa-comment" value={comments} color="text-blue-400" title="Comments" />*/}
                     {/* Favorites */}
                     <Interaction icon="far fa-heart" value={favorites} color="text-red-600" title="Favorites" />
                     {/* Download */}
@@ -25,8 +26,8 @@ const Card = props => {
                 </div>
 
                 <div className="flex items-center text-sm text-gray-800">
-                    <img src={pictureUser} className="rounded-full" alt="Profile" width="34" />
-                    <span className="ml-3">{username}</span>
+                    <img src={pictureUser} className="rounded-full mr-3" alt="Profile" width="35" />
+                    <Link to={`user/${userId}-${username}`} title="View profile">{username}</Link>
                 </div>
             </div>
         </div>

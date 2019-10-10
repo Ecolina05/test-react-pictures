@@ -2,9 +2,10 @@ import React from 'react';
 import bg from '../assets/images/bg-image-1.jpg';
 
 const Header = props => {
+    const { handleSearch } = props;
 
     const setFilterToSearch = e => {
-        if (e.key === 'Enter') props.handleSearch(e.target.value);
+        if (e.key === 'Enter') handleSearch(e.target.value);
     }
 
     return (
